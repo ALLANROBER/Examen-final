@@ -6,9 +6,10 @@ import com.exame_final.componente_2.repository.FacturaRepository;
 import com.exame_final.componente_2.repository.ProveedorRepository;
 import com.exame_final.componente_2.shared.SharedUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Transactional
 @Service
 public class FacturaService {
     private final FacturaRepository facturaRepo;

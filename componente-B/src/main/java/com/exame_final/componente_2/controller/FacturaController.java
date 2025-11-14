@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/facturas")
+@CrossOrigin("*")
 public class FacturaController {
     private final FacturaService facturaService;
     public FacturaController(FacturaService facturaService){ this.facturaService = facturaService; }

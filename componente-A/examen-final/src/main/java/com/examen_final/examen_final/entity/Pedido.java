@@ -18,6 +18,7 @@ public class Pedido {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    private String nombreProducto;
     private double total;
 
     private LocalDateTime fechaCreacion = LocalDateTime.now();
@@ -33,4 +34,12 @@ public class Pedido {
     public void setTotal(double total){ this.total = total; }
     public LocalDateTime getFechaCreacion(){ return fechaCreacion; }
     public void setFechaCreacion(LocalDateTime fechaCreacion){ this.fechaCreacion = fechaCreacion; }
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
 }

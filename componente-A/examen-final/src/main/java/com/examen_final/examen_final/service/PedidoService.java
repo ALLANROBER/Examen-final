@@ -22,7 +22,7 @@ public class PedidoService {
     }
 
 
-    public Pedido crearPedido(Long clienteId, List<Producto> productos){
+    /*public Pedido crearPedido(Long clienteId, List<Producto> productos){
         Cliente c = clienteRepo.findById(clienteId).orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
         Pedido p = new Pedido();
         p.setCliente(c);
@@ -30,7 +30,31 @@ public class PedidoService {
         p.setTotal(total);
         p.setCodigo(SharedUtils.generarCodigoUnico("PED"));
         return pedidoRepo.save(p);
+    }*/
+    public Pedido crearPedido(Long clienteId, List<Producto> productos) {
+        Cliente c = clienteRepo.findById(clienteId).orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+        Pedido p = new Pedido();
+        p.setCliente(c);
+
+        StringBuilder nombresProductos = new StringBuilder();
+        double total = 0;
+
+        for (Producto producto : productos) {
+            if (nombresProductos.length() > 0) {
+                nombresProductos.append(", ");
+            }
+            nombresProductos.append(producto.getNombre());
+
+            total += producto.getPrecio();
+        }
+
+        p.setTotal(total);
+        p.setCodigo(SharedUtils.generarCodigoUnico("PED"));
+        p.setNombreProducto(nombresProductos.toString());
+
+        return pedidoRepo.save(p);
     }
+
 
     public List<Pedido> listarPedidos(){ return pedidoRepo.findAll(); }
     public List<Pedido> listarPorCliente(Long clienteId){ return pedidoRepo.findByClienteId(clienteId); }
